@@ -10,6 +10,7 @@ mccabe==0.7.0
 pathspec==0.12.1
 pycodestyle==2.12.1
 pyflakes==3.2.0
+python-dotenv==1.0.1
 regex==2024.11.6
 sqlparse==0.5.1
 toml==0.10.2
