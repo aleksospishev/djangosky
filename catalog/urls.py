@@ -5,4 +5,7 @@ from catalog.views import contacts, home
 app_name = "catalog"
 
 
-urlpatterns = [path("home/", home, name="home"), path("contacts/", contacts, name="contacts")]
+urlpatterns = [
+    path("home/", home, name="home"),
+    path("contacts/", contacts, name="contacts")
+]
