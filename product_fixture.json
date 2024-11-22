@@ -1,0 +1,67 @@
+[
+{
+    "model": "catalog.product",
+    "pk": 1,
+    "fields": {
+        "name": "Вырезка Говяжья",
+        "description": "Вырезка из молодого бычка",
+        "image": "",
+        "category": 1,
+        "price": "1099.00",
+        "created_at": "2024-11-16T10:24:21.521Z",
+        "updated_at": "2024-11-16T10:46:09.269Z"
+    }
+},
+{
+    "model": "catalog.product",
+    "pk": 2,
+    "fields": {
+        "name": "Творог 5%",
+        "description": "Творог жирностью 5% из коровьего цельного молока",
+        "image": "",
+        "category": 2,
+        "price": "149.00",
+        "created_at": "2024-11-16T10:25:36.913Z",
+        "updated_at": "2024-11-16T10:25:36.913Z"
+    }
+},
+{
+    "model": "catalog.product",
+    "pk": 5,
+    "fields": {
+        "name": "Сметана 20%",
+        "description": "Сметана 20%, кисломолочный продукт,",
+        "image": "products/сметана.jpeg",
+        "category": 2,
+        "price": "89.00",
+        "created_at": "2024-11-16T11:03:39.248Z",
+        "updated_at": "2024-11-16T11:03:39.248Z"
+    }
+},
+{
+    "model": "catalog.product",
+    "pk": 6,
+    "fields": {
+        "name": "Батон",
+        "description": "батон пшеничный",
+        "image": "products/батон.jpeg",
+        "category": 3,
+        "price": "48.00",
+        "created_at": "2024-11-16T11:04:45.179Z",
+        "updated_at": "2024-11-16T11:04:45.179Z"
+    }
+},
+{
+    "model": "catalog.product",
+    "pk": 7,
+    "fields": {
+        "name": "куриная голень",
+        "description": "голень куриная цыпленка бройлера",
+        "image": "",
+        "category": 1,
+        "price": "210.00",
+        "created_at": "2024-11-16T11:05:44.386Z",
+        "updated_at": "2024-11-16T11:05:44.386Z"
+    }
+}
+]
