@@ -8,20 +8,23 @@ class Category(models.Model):
     description = models.TextField()
 
     def __str__(self):
+        """Возвращает имя категории."""
         return self.name
 
     class Meta:
+        """Определение настроек модели категории."""
+
         verbose_name = "Категория"
         verbose_name_plural = "Категории"
         ordering = ["name"]
 
 
 class Product(models.Model):
-    """Класс для товаров с указанием категории и цены"""
+    """Класс для товаров с указанием категории и цены."""
 
     name = models.CharField(max_length=100, verbose_name="Наименование")
     description = models.TextField(blank=True, null=True, verbose_name="Описание")
-    image = models.ImageField(upload_to="products/", blank=True, null=True, verbose_name="Изображение")
+    image = models.ImageField(upload_to="products/image", blank=True, null=True, verbose_name="Изображение")
     category = models.ForeignKey(
         verbose_name="Категория", to=Category, on_delete=models.CASCADE, related_name="products"
     )
@@ -30,9 +33,12 @@ class Product(models.Model):
     updated_at = models.DateTimeField(auto_now=True, blank=True, verbose_name="Дата изменения")
 
     def __str__(self):
+        """Возвращает имя товара, категорию и цену."""
         return f"{self.name} {self.category} {self.price}.руб."
 
     class Meta:
+        """Определение настроек модели продукта."""
+
         verbose_name = "Продукт"
         verbose_name_plural = "Продукты"
         ordering = ["-created_at", "name", "category", "price"]
