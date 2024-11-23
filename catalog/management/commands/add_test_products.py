@@ -10,6 +10,7 @@ class Command(BaseCommand):
     help = "Add test products to the database"
 
     def handle(self, *args, **kwargs):
+        """Handle."""
         Product.objects.all().delete()
         Category.objects.all().delete()
 
