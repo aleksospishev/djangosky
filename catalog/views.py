@@ -1,28 +1,29 @@
 from django.http import HttpResponse
-from django.shortcuts import get_object_or_404, render
+from django.views.generic import DetailView, ListView, TemplateView
 
 from .models import Product
 
 
-def home(request):
-    """Контроллер домашней страницы."""
-    context = {"products": Product.objects.all()}
-    return render(request, "home.html", context)
+class ProductListView(ListView):
+    model = Product
 
 
-def contacts(request):
-    """Контроллер страницы контакты, с формой обратной связи."""
-    if request.method == "POST":
-        name = request.POST.get("name")
-        phone = request.POST.get("phone")
-        message = request.POST.get("message")
-        print(f"{name} c номером телефона {phone}, отправил сообщение {message}")
-        return HttpResponse(f"Спасибо, {name}! Ваше сообщение получено.")
-    return render(request, "contact.html")
+class ProductDetailView(DetailView):
+    model = Product
 
 
-def product_detail(request, product_id):
-    """Контроллер страницы детального продукта."""
-    product = get_object_or_404(Product, id=product_id)
-    context = {"product": product}
-    return render(request, "product.html", context)
+class ContactView(TemplateView):
+    template_name = 'catalog/contact.html'
+    extra_context = {
+        'title': 'Контакты'
+    }
+
+    def get_context_data(self, **kwargs):
+        return super().get_context_data(**kwargs)
+
+    def post(self, request, *args, **kwargs):
+        name = request.POST.get('name')
+        email = request.POST.get('email')
+        message = request.POST.get('message')
+        print(f'You have new message from {name}({email}): {message}')
+        return super().get(request, *args, **kwargs)
