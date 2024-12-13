@@ -17,7 +17,8 @@
                         <li>- Категория: {{ object.category }}</li>
                         <li>- {{ object.description }}</li>
                     </ul>
-                    <button type="button" class="w-100 btn btn-lg btn-outline-primary">Добавить в корзину</button>
+                    <a type="button" class="btn btn-primary " href="{% url 'catalog:product_update' product.pk %}"> Изменить</a>
+                    <a type="button" class="btn btn-primary " href="{% url 'catalog:product_delete' product.pk %}"> Удалить</a>
                 </div>
 
             </div>

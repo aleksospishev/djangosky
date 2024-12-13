@@ -2,6 +2,9 @@
 {% load image_tags %}
 {% block title %}Домашняя страница{% endblock %}
 {% block content %}
+<div class="pricing-header px-3 py-3 pt-md-5 pb-md-4 mx-auto text-center">
+    <a class="btn btn-primary" href="{% url 'catalog:product_create' %}" role="button"> Создать запись </a>
+</div>
 <div class="container py-3">
     <div class="row row-cols-1 row-cols-md-3 mb-3 text-center">
         {% for product in products%}
