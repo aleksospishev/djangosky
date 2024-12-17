@@ -3,6 +3,7 @@ from django.db import models
 
 class Post(models.Model):
     """Класс для постов в блоге."""
+
     title = models.CharField(max_length=200, verbose_name="Заголовок")
     content = models.TextField(verbose_name="Содержание")
     preview = models.ImageField(upload_to="posts/image", blank=True, null=True, verbose_name="Изображение")
@@ -17,6 +18,7 @@ class Post(models.Model):
 
     class Meta:
         """Определение настроек модели поста."""
+
         verbose_name = "Пост"
         verbose_name_plural = "Посты"
         ordering = ["-created_at", "title"]

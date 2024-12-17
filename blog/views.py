@@ -1,5 +1,6 @@
 from django.urls import reverse_lazy
-from django.views.generic import CreateView, DeleteView, DetailView, ListView, UpdateView
+from django.views.generic import (CreateView, DeleteView, DetailView, ListView,
+                                  UpdateView)
 
 # Create your views here.
 from .models import Post
@@ -7,6 +8,7 @@ from .models import Post
 
 class PostListView(ListView):
     """Список публичных постов."""
+
     model = Post
 
     def get_queryset(self):
@@ -15,6 +17,7 @@ class PostListView(ListView):
 
 class PostDetailView(DetailView):
     """Детальный просмотр поста."""
+
     model = Post
 
     def get_object(self):
@@ -27,6 +30,7 @@ class PostDetailView(DetailView):
 
 class PostCreateView(CreateView):
     """Создание нового поста."""
+
     model = Post
     fields = ("title", "content", "preview")
     success_url = reverse_lazy("blog:blog")
@@ -34,6 +38,7 @@ class PostCreateView(CreateView):
 
 class PostUpdateView(UpdateView):
     """Редактирование поста."""
+
     model = Post
     fields = ("title", "content", "preview")
 
@@ -44,5 +49,6 @@ class PostUpdateView(UpdateView):
 
 class PostDeleteView(DeleteView):
     """Удаление поста."""
+
     model = Post
     success_url = reverse_lazy("blog:blog")
