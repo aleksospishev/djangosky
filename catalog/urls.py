@@ -2,7 +2,7 @@ from django.urls import path
 
 from catalog.views import (
     ContactView,
-    ProductCreateView,  # noqa: E501
+    ProductCreateView,
     ProductDeleteView,
     ProductDetailView,
     ProductListView,
