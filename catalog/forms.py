@@ -14,7 +14,7 @@ class ProductForm(forms.ModelForm):
 
     class Meta:
         model = Product
-        exclude = ["created_at", "updated_at"]
+        exclude = ["created_at", "updated_at", "owner"]
 
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
@@ -44,3 +44,12 @@ class ProductForm(forms.ModelForm):
         for word in description.lower().split():
             if word in WORDS_LIST_EXCLUDE:
                 self.add_error("description", f"Описание не может содержать слово {word}")
+
+
+class ProductModeratorForm(forms.ModelForm):
+
+    class Meta:
+        model = Product
+        fields = [
+            "published",
+        ]
