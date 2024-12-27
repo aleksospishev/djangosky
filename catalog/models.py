@@ -1,5 +1,7 @@
 from django.db import models
 
+from users.models import User
+
 
 class Category(models.Model):
     """Класс для категорий товаров."""
@@ -31,6 +33,8 @@ class Product(models.Model):
     price = models.DecimalField(max_digits=10, decimal_places=2, verbose_name="Цена")
     created_at = models.DateTimeField(auto_now_add=True, blank=True, verbose_name="Дата создания")
     updated_at = models.DateTimeField(auto_now=True, blank=True, verbose_name="Дата изменения")
+    published = models.BooleanField(default=False, verbose_name="Опубликовано")
+    owner = models.ForeignKey(User, verbose_name="владелец", on_delete=models.SET_NULL, blank=True, null=True)
 
     def __str__(self):
         """Возвращает имя товара, категорию и цену."""
@@ -42,3 +46,4 @@ class Product(models.Model):
         verbose_name = "Продукт"
         verbose_name_plural = "Продукты"
         ordering = ["-created_at", "name", "category", "price"]
+        permissions = (("can_unpublish_product", "Can unpublish product"),)
