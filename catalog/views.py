@@ -1,18 +1,34 @@
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.core.exceptions import PermissionDenied
 from django.http import HttpResponseForbidden
-from django.shortcuts import redirect, get_object_or_404
+from django.shortcuts import get_object_or_404, redirect
 from django.urls import reverse_lazy
-from django.views.generic import CreateView, DeleteView, DetailView, ListView, TemplateView, UpdateView
+from django.views.generic import (CreateView, DeleteView, DetailView, ListView,
+                                  TemplateView, UpdateView)
 
 from .forms import ProductForm, ProductModeratorForm
-from .models import Product
+from .models import Category, Product
+from .services import product_list, products_list_for_category
 
 
 class ProductListView(ListView):
     """Список всех продуктов."""
 
     model = Product
+
+    def get_queryset(self):
+        return product_list()
+
+
+class ProductCategoryView(ListView):
+    """Список продуктов по категории."""
+
+    model = Category
+    template_name = "catalog/product_categories.html"
+
+    def get_queryset(self):
+        category = get_object_or_404(Category, name=self.kwargs["category_slug"])
+        return products_list_for_category(category.pk)
 
 
 class ProductCreateView(LoginRequiredMixin, CreateView):
@@ -63,16 +79,6 @@ class ProductDeleteView(LoginRequiredMixin, DeleteView):
             return redirect("catalog:home")
         else:
             return HttpResponseForbidden("У вас нет прав для исключения студента.")
-
-    #
-    # def get_object(self, queryset = None):
-    #     user = self.request.user
-    #     if user == self.object.owner or user.has_perm("catalog.can_delete_product"):
-    #         object.delete()
-    #     else:
-    #         raise HttpResponseForbidden
-    #
-    #
 
 
 class ProductDetailView(LoginRequiredMixin, DetailView):
