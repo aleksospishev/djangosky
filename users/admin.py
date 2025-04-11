@@ -10,4 +10,3 @@ class Useradmin(admin.ModelAdmin):
     list_display = ("email", "avatar", "country", "phone_number")
     list_filter = ("email", "country")
     search_fields = ("email", "phone_number")
-
