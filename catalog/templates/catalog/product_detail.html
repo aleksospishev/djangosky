@@ -1,0 +1,27 @@
+{% extends 'catalog/base.html' %}
+{% load image_tags %}
+{% block title %}{{ object.name }}{% endblock %}
+{% block content %}
+    <!
+    <div class="container py-3">
+        <div class="text-center">
+            <div class="col">
+                <div class="card-header py-3">
+                    <h4 class="my-0 font-weight-normal">{{ object.name }}</h4>
+                    <img src="{{ object.image | image_path }}" alt="{{ object.name }}" class="card-img-top">
+                </div>
+                <div class="card-body">
+                    <h1 class="card-title pricing-card-title">{{ object.price }}<small
+                            class="text-body-secondary fw-light">руб.</small></h1>
+                    <ul class="list-unstyled mt-3 mb-4">
+                        <li>- Категория: <a class="text-muted" href="/products/{{ object.category }}/">{{ object.category }}</a></li>
+                        <li>- {{ object.description }}</li>
+                    </ul>
+                    <a type="button" class="btn btn-primary " href="{% url 'catalog:product_update' product.pk %}"> Изменить</a>
+                    <a type="button" class="btn btn-primary " href="{% url 'catalog:product_delete' product.pk %}"> Удалить</a>
+                </div>
+
+            </div>
+        </div>
+    </div>
+{% endblock %}
